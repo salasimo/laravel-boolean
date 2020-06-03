@@ -14,12 +14,12 @@
     </div>
     <div class="row">
       <div class="col-12">
-        <form action="{{--{{route('admin.photos.store')}}--}}" method="POST" enctype="multipart/form-data">
+        <form action="{{route('admin.photos.store')}}" method="POST" enctype="multipart/form-data">
           @csrf
           @method('POST')
           <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" placeholder="Inserisci il titolo della foto" name="title">
+            <label for="name">Title</label>
+            <input type="text" class="form-control" id="name" placeholder="Inserisci il titolo della foto" name="name">
             @error('title')
               <small class="form-text">Errore</small>
             @enderror

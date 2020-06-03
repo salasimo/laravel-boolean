@@ -1,11 +1,11 @@
-@php
+{{-- @php
 $photo = [
   'id' => 1,
   'title' => 'Titolo della foto',
   'description' => 'Descrizione di questa foto...',
   'path' => 'images/.jpeg'
 ];   
-@endphp
+@endphp --}}
 
 @extends('layouts.app')
 @section('content')
@@ -27,8 +27,8 @@ $photo = [
           @csrf
           @method('PATCH')
           <div class="form-group">
-            <label for="title">Title</label>
-            <input type="text" class="form-control" id="title" name="title" value="{{$photo['title']}}>
+            <label for="name">Title</label>
+            <input type="text" class="form-control" id="name" name="name" value="{{$photo['name']}}>
             @error('title')
               <small class="form-text">Errore</small>
             @enderror

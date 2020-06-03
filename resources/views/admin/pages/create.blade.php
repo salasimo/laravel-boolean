@@ -1,4 +1,4 @@
-@php
+{{-- @php
 $categories = [
     [
         'id'=> 1,
@@ -78,7 +78,7 @@ $photos = [
 ];
 
 
-@endphp
+@endphp --}}
 
 @extends('layouts.app')
 @section('content')
@@ -104,7 +104,7 @@ $photos = [
         </div>
         <div class="row">
           <div class="col-12">
-            <form action="" method="POST">
+            <form action="{{route('admin.pages.store')}}" method="POST">
               @csrf
               @method("POST")
               <div class="form-group pt-3">

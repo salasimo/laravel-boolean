@@ -1,4 +1,4 @@
-@php
+{{-- @php
 $pages = [
     [
         'id' => 1,
@@ -32,7 +32,7 @@ $pages = [
         ]
     ]
 ];    
-@endphp
+@endphp --}}
 
 @extends('layouts.app')
 @section('content')

@@ -22,18 +22,43 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/pages', function () {
-    return view('admin.pages.index');
-})->name('admin.pages.index');
+/*
+------------------------------------------------------
+    rotte che portano a views con dati fake
+------------------------------------------------------
+*/
 
-Route::get('/pages/create', function () {
-    return view('admin.pages.create');
-})->name('admin.pages.create');
+// Route::get('/pages', function () {
+//     return view('admin.pages.index');
+// })->name('admin.pages.index');
 
-Route::get('/photos', function () {
-    return view('admin.photos.index');
-})->name('admin.photos.index');
+// Route::get('/pages/create', function () {
+//     return view('admin.pages.create');
+// })->name('admin.pages.create');
 
-Route::get('/photos/create', function () {
-    return view('admin.photos.create');
-})->name('admin.photos.create');
+// Route::get('/photos', function () {
+//     return view('admin.photos.index');
+// })->name('admin.photos.index');
+
+// Route::get('/photos/create', function () {
+//     return view('admin.photos.create');
+// })->name('admin.photos.create');
+
+/*
+======================================
+    ROTTE VERSO I CONTROLLER
+======================================
+*/
+
+//Guests
+Route::resource('pages', 'PageController');
+
+//Admin (CRUD)
+Route::namespace('Admin')
+    ->name('admin.')
+    ->prefix('admin')
+    ->middleware('auth')
+    ->group(function () {
+        Route::resource('pages', 'PageController');
+        Route::resource('photos', 'PhotoController');
+    });

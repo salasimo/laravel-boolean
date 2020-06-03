@@ -6,6 +6,7 @@ use App\Photo;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Auth;
 
 class PhotoController extends Controller
 {
@@ -16,7 +17,8 @@ class PhotoController extends Controller
      */
     public function index()
     {
-        //
+        $photos = Photo::all();
+        return view('admin.photos.index', compact('photos'));
     }
 
     /**
@@ -26,7 +28,7 @@ class PhotoController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.photos.create');
     }
 
     /**
@@ -37,7 +39,19 @@ class PhotoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $request->all();
+        $path = Storage::disk('public')->put('images', $data['path']);
+
+        $data['user_id'] = Auth::id();
+        $photo = new Photo;
+        $photo->fill($data);
+        $saved = $photo->save();
+
+        if (!$saved) {
+            return redirect()->back();
+        }
+
+        redirect('admin.photos.index');
     }
 
     /**
@@ -57,9 +71,11 @@ class PhotoController extends Controller
      * @param  \App\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function edit(Photo $photo)
+    public function edit($id)
     {
-        //
+
+        $photo = Photo::findOrFail($id);
+        return view('admin.photos.edit', compact('photo'));
     }
 
     /**
@@ -69,9 +85,21 @@ class PhotoController extends Controller
      * @param  \App\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Photo $photo)
+    public function update(Request $request, $id)
     {
-        //
+
+        $photo = Photo::findOrFail($id);
+
+        $data = $request->all();
+
+        if (isset($data['path'])) {
+            Storage::disk('public')->delete($photo['path']);
+        }
+
+        $photo->fill($data);
+        $photo->update();
+
+        return redirect()->back();
     }
 
     /**
@@ -80,8 +108,18 @@ class PhotoController extends Controller
      * @param  \App\Photo  $photo
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Photo $photo)
+    public function destroy($id)
     {
-        //
+        $userId = Auth::id();
+        $photo = Photo::findOrFail($id);
+        if ($userId != $photo->user_id) {
+            abort('404');
+        }
+
+        $photo->pages()->detach();
+
+        $photo->delete();
+
+        return redirect()->back();
     }
 }

@@ -34,7 +34,7 @@ class PageController extends Controller
         $tags = Tag::all();
         $photos = Photo::all();
 
-        return view('admin.pages.create', compact('category', 'tags', 'photos'));
+        return view('admin.pages.create', compact('categories', 'tags', 'photos'));
     }
 
     /**

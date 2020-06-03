@@ -1,4 +1,4 @@
-@php
+{{-- @php
 $photos = [
   [
     'id' => 1,
@@ -17,7 +17,7 @@ $photos = [
     'title' => 'La foto numero 4',
   ],
 ];
-@endphp
+@endphp --}}
 @extends('layouts.app')
 @section('content')
   <div class="container">
@@ -53,7 +53,7 @@ $photos = [
             @foreach ($photos as $photo)
               <tr>
                 <td>{{$photo['id']}}</td>
-                <td>{{$photo['title']}}</td>
+                <td>{{$photo['name']}}</td>
                 
                 <td><a class="btn btn-primary" href="">Visualizza</a> </td>
                 <td><a class="btn btn-info" href="">Modifica</a></td>

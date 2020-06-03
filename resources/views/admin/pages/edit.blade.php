@@ -1,4 +1,4 @@
-@php
+{{-- @php
 $categories = [
     [
         'id'=> 1,
@@ -92,7 +92,7 @@ $page = [
 $oldtags = null;
 $message = '';
 
-@endphp
+@endphp --}}
 
 @extends('layouts.app')
 @section('content')
@@ -118,7 +118,7 @@ $message = '';
         </div>
         <div class="row">
           <div class="col-12">
-            <form action="" method="POST">
+            <form action="{{route('admin.pages.update')}}" method="POST">
               @csrf
               @method("PUT")
               <div class="form-group pt-3">
