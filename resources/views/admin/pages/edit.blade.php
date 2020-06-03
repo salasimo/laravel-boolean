@@ -3,29 +3,23 @@ $categories = [
     [
         'id'=> 1,
         'name' => 'New Economy'
-
     ],
     [
         'id'=> 2,
         'name' => 'Space Exploration'
-
     ],
     [
         'id'=> 3,
         'name' => 'Start Up'
-
     ],
     [
         'id'=> 4,
         'name' => 'Tech Trends'
-
     ],
     [
         'id'=> 5,
         'name' => 'Mobility'
-
     ],
-
 ];
 
 $tags = [

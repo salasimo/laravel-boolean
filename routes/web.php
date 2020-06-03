@@ -30,6 +30,10 @@ Route::get('/pages/create', function () {
     return view('admin.pages.create');
 })->name('admin.pages.create');
 
-Route::get('/pages/{page}/edit', function () {
-    return view('admin.pages.edit');
-})->name('admin.pages.edit');
+Route::get('/photos', function () {
+    return view('admin.photos.index');
+})->name('admin.photos.index');
+
+Route::get('/photos/create', function () {
+    return view('admin.photos.create');
+})->name('admin.photos.create');
